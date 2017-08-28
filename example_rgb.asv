@@ -4,9 +4,9 @@
 % This is an example code for collecting ball sample colors using roipoly
 close all
 
-imagepath = '\\SRVB\Homes$\luyuche1\Desktop\Downloads\_0b9fe342091ff96332a4829563be23d6_AssignmentWEEK1\train';
+imagepath = '\\SRVB\Homes$\luyuche1\Downloads\_0b9fe342091ff96332a4829563be23d6_AssignmentWEEK1\train';
 Samples = [];
-for k=1:15
+for k=1:2
     % Load image
     I = imread(sprintf('%s/%03d.png',imagepath,k));
     
@@ -49,13 +49,11 @@ zlabel('Blue');
 % the sample data.
 %
 mu = mean(Samples);
-variancetotal=(var(double(Samples))).^0.5;
 x1=Samples(1:end,1);
 x2=Samples(1:end,2);
 x3=Samples(1:end,3);
-variance1 = variancetotal(1);
-variance2 = variancetotal(2);
-variance3 = variancetotal(3);
-variance=[variance1;variance2;variance3];
-covar=[variance1^2 variance1*variance2 variance1*variance3; variance1*variance2 variance2^2 variance2*variance3; variance1*variance3 variance2*variance3 variance3^2];
-
+variance1 = var(x1);
+variance2 = var(x2);
+variance3 = var(x3);
+variance=[variance3;variance2;variance3];
+covar=[variance1^2 variance1*variance2 variance1*variance3; variance2^2 variance2*variance1 variance2*variance3;variance1^2 variance1*variance2 variance1*variance3;]
