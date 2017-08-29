@@ -21,7 +21,8 @@ function [ predictx, predicty, state, param ] = kalmanFilter( t, x, y, state, pa
     %% TODO: Add Kalman filter updates
     % As an example, here is a Naive estimate without a Kalman filter
     % You should replace this code
-    vx = A(4,4)*state(4)+
+    norm=normpdf(state,[0;0;0;0],)
+    vx = A(4,4)*state(4) + normpdf(, ,)
     vy = (y - state(2)) / (t - previous_t);
     % Predict 330ms into the future
     predictx = x + vx * 0.330;
